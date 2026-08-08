@@ -1,0 +1,386 @@
+name: Ambient light
+products:
+  - id: bzovzknpiaaiakl7
+    manufacturer: PIXBEE
+    model: PXB-103L
+entities:
+  - entity: light
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: colour
+            value: hs
+          - dps_val: white
+            value: color_temp
+          - dps_val: scene
+            value: Scene
+          - dps_val: customize_scene
+            value: Custom
+          - dps_val: out_scene
+            value: External
+      - id: 6
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 7
+        type: integer
+        name: color_temp
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 5
+        type: hex
+        name: rgbhsv
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: switch
+    name: Power
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: breath
+            value: Breathing
+          - dps_val: light_on
+            value: "on"
+          - dps_val: light_off
+            value: "off"
+  - entity: siren
+    name: Music
+    icon: "mdi:music"
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+      - id: 9
+        type: integer
+        name: volume_level
+        range:
+          min: 1
+          max: 100
+        mapping:
+          - scale: 100
+      - id: 109
+        type: string
+        name: tone
+        mapping:
+          - dps_val: Bubble
+            value: Bubble
+          - dps_val: Ocean
+            value: Ocean
+          - dps_val: Stream
+            value: Stream
+          - dps_val: Fountain
+            value: Fountain
+          - dps_val: Drip
+            value: Drip
+          - dps_val: White_Noise
+            value: White noise
+          - dps_val: Night
+            value: Night
+          - dps_val: Lullaby
+            value: Lullaby
+          - dps_val: Peaceful_Mind
+            value: Peaceful mind
+          - dps_val: Universe
+            value: Universe
+          - dps_val: SCI_FI
+            value: Sci-fi
+          - dps_val: Alpha_Brainwave
+            value: Alpha brainwave
+          - dps_val: Zen
+            value: Zen
+          - dps_val: Wind
+            value: Wind
+          - dps_val: Rain
+            value: Rain
+          - dps_val: Thunderstorm
+            value: Thunderstorm
+          - dps_val: Campfire
+            value: Campfire
+          - dps_val: Rainforest
+            value: Rainforest
+          - dps_val: Whale
+            value: Whale
+          - dps_val: Cuckoo_Bird
+            value: Cuckoo bird
+          - dps_val: Purring_Cat
+            value: Purring cat
+          - dps_val: Cricket
+            value: Cricket
+          - dps_val: Wolf_Howling
+            value: Wolf howling
+          - dps_val: Hairdryer
+            value: Hairdryer
+          - dps_val: Heartbeat
+            value: Heartbeat
+  - entity: select
+    name: Music category
+    icon: "mdi:playlist-music"
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: SPA
+            value: Spa
+          - dps_val: Sleep
+            value: Sleep
+          - dps_val: Meditation
+            value: Meditation
+          - dps_val: Nature
+            value: Nature
+          - dps_val: Animal
+            value: Animal
+          - dps_val: Life
+            value: Life
+  - entity: select
+    translation_key: scene
+    dps:
+      - id: 12
+        type: string
+        name: option
+        mapping:
+          - dps_val: Ascend
+            value: Ascend
+          - dps_val: Deep_Ocean
+            value: Deep ocean
+          - dps_val: Beach
+            value: Beach
+          - dps_val: Meditation
+            value: Meditation
+          - dps_val: Rainbow
+            value: Rainbow
+          - dps_val: Fireplace
+            value: Fireplace
+          - dps_val: Breath
+            value: Breath
+          - dps_val: Joy
+            value: Joy
+  - entity: select
+    name: Custom scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 13
+        type: string
+        name: option
+        mapping:
+          - dps_val: mode_1
+            value: Scene 1
+          - dps_val: mode_2
+            value: Scene 2
+          - dps_val: mode_3
+            value: Scene 3
+          - dps_val: mode_4
+            value: Scene 4
+          - dps_val: mode_5
+            value: Scene 5
+          - dps_val: mode_6
+            value: Scene 6
+          - dps_val: mode_7
+            value: Scene 7
+          - dps_val: mode_8
+            value: Scene 8
+      - id: 14
+        type: base64
+        name: setting_data
+        optional: true
+  - entity: select
+    name: External scene
+    icon: "mdi:image-filter-vintage"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: Night_Club
+            value: Night club
+          - dps_val: Pulse
+            value: Pulse
+  - entity: select
+    name: Status
+    icon: "mdi:weather-sunset"
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: manual
+            value: Manual
+          - dps_val: wake_up_1
+            value: Wake 1
+          - dps_val: wake_up_2
+            value: Wake 2
+          - dps_val: wake_up_3
+            value: Wake 3
+          - dps_val: wake_up_4
+            value: Wake 4
+          - dps_val: sleep_1
+            value: Sleep 1
+          - dps_val: sleep_2
+            value: Sleep 2
+          - dps_val: sleep_3
+            value: Sleep 3
+          - dps_val: sleep_4
+            value: Sleep 4
+      - id: 15
+        type: base64
+        name: wake_up_set
+        optional: true
+      - id: 16
+        type: base64
+        name: sleep_set
+        optional: true
+      - id: 107
+        type: base64
+        name: set_time
+        optional: true
+  - entity: switch
+    name: Focus
+    icon: "mdi:target"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: switch
+        mapping:
+          - dps_val: Start
+            value: true
+          - dps_val: Stop
+            value: false
+      - id: 105
+        type: base64
+        name: focus_data
+        optional: true
+  - entity: switch
+    name: Scene run
+    icon: "mdi:play-circle"
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: lock
+  - entity: button
+    translation_key: alarm_snooze
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        name: button
+  - entity: button
+    translation_key: alarm_off
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        name: button
+  - entity: button
+    name: Disconnect Bluetooth
+    icon: "mdi:bluetooth-off"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: DIS_BT
+            value: true
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 100
+  - entity: select
+    translation_key: time_format
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: option
+        mapping:
+          - dps_val: 12h
+            value: "12"
+          - dps_val: 24h
+            value: "24"
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 20
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440
+  - entity: number
+    name: Light level
+    icon: "mdi:brightness-6"
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 10
+          max: 1000
+  - entity: binary_sensor
+    name: Bluetooth
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
